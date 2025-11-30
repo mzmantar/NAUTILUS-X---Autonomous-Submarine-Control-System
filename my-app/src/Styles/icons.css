@@ -1,0 +1,8 @@
+@import "phosphor-fonts/all.css";
+
+.icon {
+  display: block;
+  width: 1em;
+  height: 1em;
+  letter-spacing: 0;
+}

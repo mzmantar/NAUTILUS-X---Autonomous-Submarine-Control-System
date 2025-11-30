@@ -1,0 +1,214 @@
+/* Styles de base pour le conteneur de la carte */
+.map-container {
+  position: relative;
+}
+
+.map-view {
+  width: 50%;
+  height: 500px;
+  border-radius: 5px;
+  overflow: hidden;
+  border: 2px solid rgb(127, 113, 213);
+}
+
+/* Masquer les éléments Mapbox non désirés */
+.mapboxgl-ctrl-logo,
+.mapboxgl-ctrl-attrib {
+  display: none !important;
+}
+
+/* Styles pour le marqueur sous-marin */
+.submarine-marker {
+  cursor: pointer;
+  z-index: 1000;
+}
+
+/* Effet 3D pour le sous-marin */
+.submarine-body {
+  width: 50px;
+  height: 25px;
+  background: linear-gradient(45deg, #1a365d 60%, #2d5a87 100%);
+  border-radius: 25px 8px 8px 25px;
+  border: 2px solid #00bfff;
+  box-shadow: 0 0 15px rgba(0, 191, 255, 0.5), 8px 8px 16px rgba(0, 0, 0, 0.25),
+    inset 10px 0 20px #0a1a2d;
+  position: relative;
+  perspective: 120px;
+  transform-style: preserve-3d;
+  transform: rotate(90deg);
+}
+
+.periscope {
+  width: 3px;
+  height: 12px;
+  background: #333;
+  position: absolute;
+  top: 25px;
+  left: 35px;
+  border-radius: 2px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  transform: rotateY(-15deg);
+}
+
+.main-window {
+  width: 12px;
+  height: 12px;
+  background: radial-gradient(circle at 30% 30%, #bfffff 70%, #00bfff 100%);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 8px;
+  transform: translateY(-50%) translateZ(6px);
+  box-shadow: 0 2px 8px rgba(0, 191, 255, 0.5), inset 0 0 5px #fff;
+  animation: sonarBlink 2s infinite;
+}
+
+.side-window-1 {
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(
+    circle at 60% 40%,
+    #fff 40%,
+    rgba(255, 255, 0, 0.7) 100%
+  );
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 25px;
+  transform: translateY(-50%);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), inset 0 0 2px #fff;
+}
+
+.side-window-2 {
+  width: 4px;
+  height: 4px;
+  background: radial-gradient(
+    circle at 60% 40%,
+    #fff 40%,
+    rgba(255, 0, 0, 0.7) 100%
+  );
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), inset 0 0 2px #fff;
+}
+
+.propeller {
+  width: 8px;
+  height: 8px;
+  background: #666;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  right: -4px;
+  transform: translateY(-50%) rotateY(30deg);
+  animation: propellerSpin 1s linear infinite;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.blade-horizontal {
+  width: 12px;
+  height: 2px;
+  background: linear-gradient(90deg, #bbb 0%, #666 100%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 2px #222;
+}
+
+.blade-vertical {
+  width: 2px;
+  height: 12px;
+  background: linear-gradient(90deg, #bbb 0%, #666 100%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 2px #222;
+}
+
+@keyframes submarineFloat {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes propellerSpin {
+  from {
+    transform: translateY(-50%) rotateY(30deg) rotate(0deg);
+  }
+  to {
+    transform: translateY(-50%) rotateY(30deg) rotate(360deg);
+  }
+}
+
+@keyframes sonarBlink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+@keyframes bubbleRise {
+  0% {
+    opacity: 0;
+    transform: translateY(0px) scale(0.5);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-8px) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-15px) scale(0.3);
+  }
+}
+
+/* Effet de bulles sous-marines */
+.submarine-marker::after {
+  content: "";
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  top: -5px;
+  left: 20px;
+  animation: bubbleRise 5s ease-in-out infinite;
+}
+
+.refresh-icon {
+  font-size: 1em;
+  font-weight: bold;
+  line-height: 1;
+  display: inline-block;
+}
+
+.mapboxgl-ctrl-refresh {
+  background: #1e1d1d !important;
+  color: #fff !important;
+  border: none !important;
+  font-size: 22px !important;
+  width: 20px;
+  height: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(102, 101, 101, 0.35),
+    0 1.5px 6px rgba(0, 0, 0, 0.18);
+}

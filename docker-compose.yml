@@ -1,0 +1,62 @@
+version: "3.8"
+
+services:
+  api-gateway:
+    build: ./api-gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      - ballast-service
+      - battery-service
+      - filter-service
+      - gyro-service
+      - lidar-service
+      - light-service
+      - motor-service
+      - navigation-service
+      - vision-service
+
+  ballast-service:
+    build: ./ballast-service
+    ports:
+      - "3001:3001"
+
+  battery-service:
+    build: ./battery-service
+    ports:
+      - "3002:3002"
+
+  filter-service:
+    build: ./filter-service
+    ports:
+      - "3003:3003"
+
+  gyro-service:
+    build: ./gyro-service
+    ports:
+      - "3004:3004"
+
+  lidar-service:
+    build: ./lidar-service
+    ports:
+      - "3005:3005"
+
+  light-service:
+    build: ./light-service
+    ports:
+      - "3006:3006"
+
+  motor-service:
+    build: ./motor-service
+    ports:
+      - "3007:3007"
+
+  navigation-service:
+    build: ./navigation-service
+    ports:
+      - "3008:3008"
+
+  vision-service:
+    build: ./vision-service
+    ports:
+      - "3010:3010"
