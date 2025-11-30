@@ -1,0 +1,36 @@
+# Documentation
+*.md linguist-documentation
+
+# Vendored dependencies (exclude from language stats)
+my-app/release/** linguist-vendored
+**/node_modules/** linguist-vendored
+**/__pycache__/** linguist-vendored
+
+# Font files
+*.woff linguist-vendored
+*.woff2 linguist-vendored
+*.ttf linguist-vendored
+*.eot linguist-vendored
+*.otf linguist-vendored
+
+# Phosphor fonts directory
+my-app/src/Styles/phosphor-fonts/** linguist-vendored
+my-app/src/fonts/** linguist-vendored
+
+# Chromium resources
+*.pak linguist-vendored
+*.json linguist-vendored=false
+
+# Ensure correct language detection
+*.js linguist-language=JavaScript
+*.jsx linguist-language=JavaScript
+*.cpp linguist-language=C++
+*.hpp linguist-language=C++
+*.ino linguist-language=C++
+*.py linguist-language=Python
+*.css linguist-language=CSS
+
+# Mark build outputs as generated
+my-app/release/** linguist-generated
+**/dist/** linguist-generated
+**/build/** linguist-generated
